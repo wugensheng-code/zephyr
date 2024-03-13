@@ -16,6 +16,10 @@
 #include "ra8d1/bsp_override.h"
 #include "ra8d1/bsp_mcu_info.h"
 #define BSP_MCU_GROUP_RA8D1 (1)
+#elif CONFIG_SOC_R7FA8T1AHECBD
+#include "ra8t1/bsp_override.h"
+#include "ra8t1/bsp_mcu_info.h"
+#define BSP_MCU_GROUP_RA8T1 (1)
 #endif
 #include "bsp_clock_cfg.h"
 #define BSP_LOCO_HZ         (32768)

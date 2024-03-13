@@ -112,10 +112,13 @@
 
 		pclkblock: pclkblock@40203000 {
 			compatible = "renesas,ra-cgc-pclk-block";
-			reg = <0x40203000 4>, <0x40203004 4>, <0x40203008 4>,
-			      <0x4020300c 4>, <0x40203010 4>;
+			reg = <0x40203000 4>,
+			      <0x40203004 4>,
+			      <0x40203008 4>,
+			      <0x4020300c 4>,
+			      <0x40203010 4>;
 			reg-names = "MSTPA", "MSTPB","MSTPC",
-				    "MSTPD", "MSTPE";
+						"MSTPD", "MSTPE";
 			#clock-cells = <0>;
 			clocks = <&pllp>;
 			status = "okay";

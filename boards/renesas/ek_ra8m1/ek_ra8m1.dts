@@ -93,3 +93,10 @@
 		status = "okay";
 	};
 };
+
+&spi1 {
+	compatible = "renesas,ra-spi-b";
+	pinctrl-0 = <&spi1_default>;
+	pinctrl-names = "default";
+	status = "okay";
+};

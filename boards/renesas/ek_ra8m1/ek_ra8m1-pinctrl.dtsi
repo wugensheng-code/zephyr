@@ -51,4 +51,23 @@
 			psels = <RA_PSEL(RA_PSEL_SCI_9, 10, 15)>;
 		};
 	};
+
+	spi1_default: spi1_default {
+		group1 {
+			/* MISO */
+			psels = <RA_PSEL(RA_PSEL_SPI, 4, 10)>;
+		};
+		group2 {
+			/* MOSI */
+			psels = <RA_PSEL(RA_PSEL_SPI, 4, 11)>;
+		};
+		group3 {
+			/* RSPCK */
+			psels = <RA_PSEL(RA_PSEL_SPI, 4, 12)>;
+		};
+		group4 {
+			/* SSLB */
+			psels = <RA_PSEL(RA_PSEL_SPI, 4, 13)>;
+		};
+	};
 };

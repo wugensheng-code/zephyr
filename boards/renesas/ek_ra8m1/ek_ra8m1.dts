@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/dts-v1/;
+ /dts-v1/;
 
 #include <renesas/ra/ra8/r7fa8m1ahecbd.dtsi>
 #include <dt-bindings/gpio/gpio.h>

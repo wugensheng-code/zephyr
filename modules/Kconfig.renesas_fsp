@@ -38,3 +38,21 @@ config HAS_RENESAS_RA_RSIP7
 	  Includes RSIP7 implementation for SCE driver
 
 endif
+
+config USE_RA_FSP_TIMER_ULPT
+	bool
+	help
+	  Enable RA FSP TIMER-ULPT driver
+
+config USE_RA_FSP_LPM
+	bool
+	default y
+	depends on PM
+	help
+	  Enable RA FSP LPM driver
+	  Enable RA FSP DTc driver
+
+config USE_RA_FSP_FLASH_HP
+	bool
+	help
+	  Enable RA FSP Flash driver

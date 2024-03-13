@@ -52,6 +52,25 @@
 		};
 	};
 
+	spi0_default: spi0_default {
+		group1 {
+			/* MISO */
+			psels = <RA_PSEL(RA_PSEL_SPI, 6, 10)>;
+		};
+		group2 {
+			/* MOSI */
+			psels = <RA_PSEL(RA_PSEL_SPI, 6, 9)>;
+		};
+		group3 {
+			/* RSPCK */
+			psels = <RA_PSEL(RA_PSEL_SPI, 6, 11)>;
+		};
+		group4 {
+			/* SSLB */
+			psels = <RA_PSEL(RA_PSEL_SPI, 6, 12)>;
+		};
+	};
+
 	spi1_default: spi1_default {
 		group1 {
 			/* MISO */

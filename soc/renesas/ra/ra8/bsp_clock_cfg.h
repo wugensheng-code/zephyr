@@ -85,5 +85,7 @@
 #define BSP_CFG_ADCCLK_DIV      DT_PROP(DT_NODELABEL(adcclk), clk_div)
 #define BSP_CFG_I3CCLK_SOURCE   DT_PROP(DT_NODELABEL(i3cclk), clk_src)
 #define BSP_CFG_I3CCLK_DIV      DT_PROP(DT_NODELABEL(i3cclk), clk_div)
+#define BSP_CFG_LCDCLK_SOURCE   DT_PROP(DT_NODELABEL(lcdclk), clk_src)
+#define BSP_CFG_LCDCLK_DIV      DT_PROP(DT_NODELABEL(lcdclk), clk_div)
 
 #endif /* BSP_CLOCK_CFG_H_ */

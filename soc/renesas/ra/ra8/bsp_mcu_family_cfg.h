@@ -8,10 +8,16 @@
 #define BSP_MCU_FAMILY_CFG_H_
 #include "bsp_mcu_device_pn_cfg.h"
 #include "bsp_mcu_device_cfg.h"
-#include "bsp_override.h"
-#include "bsp_mcu_info.h"
-#include "bsp_clock_cfg.h"
+#if defined(CONFIG_SOC_R7FA8M1AHECBD)
+#include "ra8m1/bsp_override.h"
+#include "ra8m1/bsp_mcu_info.h"
 #define BSP_MCU_GROUP_RA8M1 (1)
+#elif defined(CONFIG_SOC_R7FA8D1BHECBD)
+#include "ra8d1/bsp_override.h"
+#include "ra8d1/bsp_mcu_info.h"
+#define BSP_MCU_GROUP_RA8D1 (1)
+#endif
+#include "bsp_clock_cfg.h"
 #define BSP_LOCO_HZ         (32768)
 #define BSP_MOCO_HZ         (8000000)
 #define BSP_SUB_CLOCK_HZ    (0)
@@ -111,6 +117,7 @@
 	 (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 11) /* SDHI1 */ |                                    \
 	 (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 12) /* SDHI0 */ |                                    \
 	 (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 13) /* DOC */ |                                      \
+	 (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 15) /* GLCDC/MIPI-DSI/DRW */ |                       \
 	 (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 16) /* CEU */ |                                      \
 	 (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 26) /* CANFD1 */ |                                   \
 	 (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 27) /* CANFD0 */ |                                   \

@@ -527,6 +527,24 @@
 		trng: trng {
 			compatible = "renesas,ra8-rsip7-trng";
 		};
+
+		ulpt0: timers@40220000 {
+			compatible = "renesas,ra8-ulpt-timer";
+			reg = <0x40220000 0x100>;
+			channel = <0>;
+			interrupt-names = "ulpti";
+			interrupts = <28 1>;
+			status = "disabled";
+		};
+
+		ulpt1: timers@40220100 {
+			compatible = "renesas,ra8-ulpt-timer";
+			reg = <0x40220100 0x100>;
+			channel = <1>;
+			interrupt-names = "ulpti";
+			interrupts = <29 1>;
+			status = "disabled";
+		};
 	};
 };
 

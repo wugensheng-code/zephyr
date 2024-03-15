@@ -1,30 +1,30 @@
-# The west manifest file for upstream Zephyr.
-#
-# The per-installation west configuration file, .west/config, sets the
-# path to the project containing this file in the [manifest] section's
-# "path" variable.
-#
-# You are free to create your own manifest files and put them in any
-# repository you want, to create your own custom Zephyr installations.
-# For example, you could create a manifest file in your own out of
-# tree application directory, which would pull this zephyr repository
-# in as an ordinary project.
-#
-# You can pass your manifest repositories to west init when creating a
-# new Zephyr installation. See the west documentation for more
-# information.
+  # The west manifest file for upstream Zephyr.
+  #
+  # The per-installation west configuration file, .west/config, sets the
+  # path to the project containing this file in the [manifest] section's
+  # "path" variable.
+  #
+  # You are free to create your own manifest files and put them in any
+  # repository you want, to create your own custom Zephyr installations.
+  # For example, you could create a manifest file in your own out of
+  # tree application directory, which would pull this zephyr repository
+  # in as an ordinary project.
+  #
+  # You can pass your manifest repositories to west init when creating a
+  # new Zephyr installation. See the west documentation for more
+  # information.
 
-manifest:
-  defaults:
-    remote: upstream
+  manifest:
+    defaults:
+      remote: upstream
 
-  remotes:
-    - name: upstream
-      url-base: https://github.com/zephyrproject-rtos
-    - name: babblesim
-      url-base: https://github.com/BabbleSim
+    remotes:
+      - name: upstream
+        url-base: https://github.com/zephyrproject-rtos
+      - name: babblesim
+        url-base: https://github.com/BabbleSim
 
-  group-filter: [-babblesim, -optional]
+    group-filter: [-babblesim, -optional]
 
   #
   # Please add items below based on alphabetical order
@@ -343,7 +343,7 @@ manifest:
       revision: 75d088037eb237b18e7ec1f47c9ce494b9b95aab
       path: modules/lib/zcbor
 
-  self:
-    path: zephyr
-    west-commands: scripts/west-commands.yml
-    import: submanifests
+    self:
+      path: zephyr
+      west-commands: scripts/west-commands.yml
+      import: submanifests

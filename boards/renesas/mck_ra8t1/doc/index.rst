@@ -6,9 +6,29 @@ RA8T1 Evaluation Kit
 Overview
 ********
 
-MCB-RA8T1 is a CPU board for motor control equipped with RA8T1. Motor control using RA8T1 can be easily realized by using it in combination with a supported inverter board. The RA8T1 MCU can be evaluated using this board alone.
+The **MCK-RA8T1** is a development kit that enables easy evaluation of motor control using permanent magnet synchronous
+motors (brushless DC motors). More detailed information about the features of this toolkit and it's applications can be
+found here: `MCK-RA8T1 Website`_
 
-By using a supported communication board, the CPU board can be electrically isolated from the PC for safe motor control evaluation and debugging.
+MCK-RA8T1 kit includes the items below:
+
+- RA8T1 CPU board (`MCB-RA8T1`_)
+- Inverter board (`MCI-LV-1`_)
+- Communication board (`MC-COM`_)
+- Permanent magnet synchronous motors
+- Accessories (cables, standoffs, etc.)
+
+.. figure:: mck-ra8t1-product-contents.jpg
+	:align: center
+	:alt: RA8T1 Evaluation Kit
+
+	MCK-RA8T1 product contents (Credit: Renesas Electronics Corporation)
+
+**MCB-RA8T1** is a CPU board for motor control equipped with RA8T1. Motor control using RA8T1 can be easily realized by
+using it in combination with a supported inverter board. The RA8T1 MCU can be evaluated using this board alone.
+
+By using a supported communication board, the CPU board can be electrically isolated from the PC for safe motor control
+evaluation and debugging.
 
 The specifications of the CPU board are shown below:
 
@@ -152,4 +172,14 @@ References
 .. _Segger Ozone Download:
    https://www.segger.com/downloads/jlink#Ozone
 
+.. _MCK-RA8T1 Website:
+	 https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/rtk0ema5k0s00020bj-mck-ra8t1-renesas-flexible-motor-control-kit-ra8t1-mcu-group
 
+.. _MCB-RA8T1:
+   https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/rtk0ema5k0c00000bj-mcb-ra8t1-cpu-board-ra8t1-mcu-group
+
+.. _MCI-LV-1:
+   https://www.renesas.com/us/en/products/power-power-management/fet-motor-drivers/rtk0em0000s04020bj-mci-lv-1-renesas-flexible-motor-control-inverter-board-low-voltage-48v10a-three-phase-bldcpmsm-motor
+
+.. _MC-COM:
+   https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rx-32-bit-performance-efficiency-mcus/rtk0emxc90s00000bj-mc-com-renesas-flexible-motor-control-communication-board

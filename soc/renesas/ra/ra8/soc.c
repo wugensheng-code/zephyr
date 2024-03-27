@@ -29,6 +29,8 @@ extern void z_arm_nmi_init(void);
 #define NMI_INIT()
 #endif
 
+#define CCR_CACHE_ENABLE                              (0x000E0201)
+
 uint32_t SystemCoreClock BSP_SECTION_EARLY_INIT;
 
 /**
@@ -44,6 +46,9 @@ static int renesas_ra8_init(void)
 	uint32_t key;
 
 	key = irq_lock();
+	SCB->CCR = (uint32_t) CCR_CACHE_ENABLE;
+	__DSB();
+	__ISB();
 
 	NMI_INIT();
 

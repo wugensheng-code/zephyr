@@ -7,4 +7,8 @@ zephyr_sources(
   soc.c
 )
 
+zephyr_sources_ifdef(CONFIG_PM
+  power.c
+)
+
 set(SOC_LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/linker.ld CACHE INTERNAL "")

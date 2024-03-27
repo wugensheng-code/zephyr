@@ -10,7 +10,7 @@
 #include <zephyr/drivers/timer/system_timer.h>
 #include <zephyr/drivers/clock_control.h>
 #include <zephyr/irq.h>
-#include <instances/r_ulpt.h>
+#include <r_ulpt.h>
 #include <zephyr/spinlock.h>
 #include <zephyr/sys_clock.h>
 

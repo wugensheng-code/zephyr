@@ -14,5 +14,6 @@ config SOC_SERIES_RA8
 	select XIP
 	select CLOCK_CONTROL_RENESAS_RA_CGC if CLOCK_CONTROL
 	select HAS_RENESAS_RA_FSP
+	select HAS_PM
 	help
 	  Enable support for Renesas RA8 MCU series

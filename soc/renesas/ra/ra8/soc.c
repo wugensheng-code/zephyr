@@ -45,8 +45,6 @@ static int renesas_ra8_init(void)
 
 	key = irq_lock();
 
-	SystemCoreClock = BSP_MOCO_HZ;
-	bsp_clock_init();
 	NMI_INIT();
 
 	irq_unlock(key);

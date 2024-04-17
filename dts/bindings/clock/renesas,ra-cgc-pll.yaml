@@ -1,0 +1,31 @@
+# Copyright (c) 2024 Renesas Electronics Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+description: Renesas RA8 Clock Generation Circuit
+
+compatible: "renesas,ra-cgc-pll"
+
+include: [clock-controller.yaml, base.yaml]
+
+properties:
+  source:
+    type: int
+  div:
+    type: int
+  mul:
+    type: array
+  divp:
+    type: int
+  freqp:
+    type: int
+  divq:
+    type: int
+  freqq:
+    type: int
+  divr:
+    type: int
+  freqr:
+    type: int
+
+  "#clock-cells":
+    const: 0

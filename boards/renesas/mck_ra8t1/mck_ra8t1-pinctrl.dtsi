@@ -17,4 +17,28 @@
 			psels = <RA_PSEL(RA_PSEL_SCI_3, 3, 9)>;
 		};
 	};
+
+	sci4_default: sci4_default {
+		group1 {
+			/* tx */
+			psels = <RA_PSEL(RA_PSEL_SCI_4, 7, 14)>;
+			drive-strength = "medium";
+		};
+		group2 {
+			/* rx */
+			psels = <RA_PSEL(RA_PSEL_SCI_4, 7, 15)>;
+		};
+	};
+
+	sci9_default: sci9_default {
+		group1 {
+			/* tx */
+			psels = <RA_PSEL(RA_PSEL_SCI_9, 2, 9)>;
+			drive-strength = "medium";
+		};
+		group2 {
+			/* rx */
+			psels = <RA_PSEL(RA_PSEL_SCI_9, 2, 8)>;
+		};
+	};
 };

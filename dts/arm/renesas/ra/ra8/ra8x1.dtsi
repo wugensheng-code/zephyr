@@ -527,14 +527,19 @@
 			status = "disabled";
 		};
 
-		flash-controller@407fe000 {
-			reg = <0x407fe000 0x1000>;
+		flash: flash-controller@40100000 {
+			compatible = "renesas,ra8-flash-controller";
+			reg = <0x40100000 0x20000>;
 			#address-cells = <1>;
 			#size-cells = <1>;
+			interrupts = <36 1>, <37 1>;
+			interrupt-names = "frdyi", "fiferr";
 
 			flash0: flash@2000000 {
 				compatible = "soc-nv-flash";
-				reg = <0x02000000 DT_SIZE_M(2)>;
+				reg = <0x02000000 DT_SIZE_K(2016)>;
+				write-block-size = <128>;
+				erase-block-size = <8192>;
 			};
 		};
 

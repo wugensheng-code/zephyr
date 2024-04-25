@@ -1,0 +1,37 @@
+# Renesas RA Family
+
+# Copyright (c) 2024 Renesas Electronics Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+config RA_FLASH_HP
+	bool "RA flash driver"
+	depends on DT_HAS_RENESAS_RA8_FLASH_CONTROLLER_ENABLED
+	default y
+	select FLASH_HAS_DRIVER_ENABLED
+	select FLASH_PAGE_LAYOUT
+	select FLASH_HAS_PAGE_LAYOUT
+	select FLASH_HAS_EX_OP if (SOC_SERIES_RA8)
+	select USE_RA_FSP_FLASH_HP
+	help
+		Enable flash driver for RA series
+
+
+if RA_FLASH_HP
+
+config FLASH_RA_WRITE_PROTECT
+	bool "Extended operation for flash write protection control"
+	depends on SOC_SERIES_RA8
+	default y
+	help
+		Enables flash extended operation to enable/disable flash write
+		protection from external devices.
+
+config FLASH_RA_READ_PROTECT
+	bool "Extended operation for flash read protection control"
+	depends on SOC_SERIES_RA8
+	default n
+	help
+		Enables flash extended operation to enable/disable flash read
+		protection from external devices.
+
+endif # RA_FLASH_HP

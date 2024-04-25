@@ -328,6 +328,11 @@ SECTIONS
     {
     __data_region_start = .;
     __data_start = .;
+		. = ALIGN(4);
+	__Code_In_RAM_Start = .;
+	KEEP(*(.code_in_ram*))
+ 	__Code_In_RAM_End = .;
+
     *(.data)
     *(".data.*")
     *(".kernel.*")

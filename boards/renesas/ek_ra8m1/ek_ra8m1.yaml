@@ -12,3 +12,4 @@ supported:
   - uart
   - entropy
   - ulpt timer
+  - flash

@@ -32,15 +32,15 @@
 
 		power-states {
 			stop0: state0 {
-					compatible = "zephyr,power-state";
-					power-state-name = "runtime-idle";
-					min-residency-us = <300>;
-				};
+				compatible = "zephyr,power-state";
+				power-state-name = "runtime-idle";
+				min-residency-us = <300>;
+			};
 			stop1: state1 {
-					compatible = "zephyr,power-state";
-					power-state-name = "standby";
-					min-residency-us = <50000>;
-				};
+				compatible = "zephyr,power-state";
+				power-state-name = "standby";
+				min-residency-us = <50000>;
+			};
 		};
 	};
 

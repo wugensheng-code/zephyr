@@ -68,6 +68,7 @@ zephyr_library_sources_ifdef(CONFIG_SPI_NOR spi_nor.c)
 
 if(CONFIG_FLASH_SIMULATOR)
   zephyr_library_sources(flash_simulator.c)
+
   if(CONFIG_NATIVE_LIBRARY)
     target_sources(native_simulator INTERFACE flash_simulator_native.c)
   elseif(CONFIG_ARCH_POSIX)
@@ -76,14 +77,16 @@ if(CONFIG_FLASH_SIMULATOR)
 endif()
 
 zephyr_library_include_directories_ifdef(CONFIG_MSPI ${ZEPHYR_BASE}/drivers/mspi)
+
 if(CONFIG_FLASH_MCUX_FLEXSPI_XIP)
   dt_chosen(chosen_flash PROPERTY "zephyr,flash")
   dt_prop(compat_flash PATH ${chosen_flash} PROPERTY compatible)
+
   if(compat_flash MATCHES "nxp,imx-flexspi-nor")
-	  zephyr_code_relocate(FILES flash_mcux_flexspi_nor.c LOCATION ${CONFIG_FLASH_MCUX_FLEXSPI_XIP_MEM}_TEXT)
-	  zephyr_code_relocate(FILES jesd216.c LOCATION ${CONFIG_FLASH_MCUX_FLEXSPI_XIP_MEM}_TEXT)
+    zephyr_code_relocate(FILES flash_mcux_flexspi_nor.c LOCATION ${CONFIG_FLASH_MCUX_FLEXSPI_XIP_MEM}_TEXT)
+    zephyr_code_relocate(FILES jesd216.c LOCATION ${CONFIG_FLASH_MCUX_FLEXSPI_XIP_MEM}_TEXT)
   elseif(compat_flash MATCHES "nxp,imx-flexspi-mx25um51345g")
-	  zephyr_code_relocate(FILES flash_mcux_flexspi_mx25um51345g.c LOCATION ${CONFIG_FLASH_MCUX_FLEXSPI_XIP_MEM}_TEXT)
+    zephyr_code_relocate(FILES flash_mcux_flexspi_mx25um51345g.c LOCATION ${CONFIG_FLASH_MCUX_FLEXSPI_XIP_MEM}_TEXT)
   elseif(compat_flash MATCHES "nxp,imx-flexspi-hyperflash")
     zephyr_code_relocate(FILES flash_mcux_flexspi_hyperflash.c LOCATION ${CONFIG_FLASH_MCUX_FLEXSPI_XIP_MEM}_TEXT)
   endif()

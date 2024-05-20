@@ -10,3 +10,4 @@ tests:
       - posix
     integration_platforms:
       - qemu_x86
+      - vision_board

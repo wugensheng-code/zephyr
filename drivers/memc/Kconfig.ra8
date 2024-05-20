@@ -1,0 +1,20 @@
+# Copyright (c) 2020 Teslabs Engineering S.L.
+# SPDX-License-Identifier: Apache-2.0
+
+config MEMC_RA8
+	bool "RA8 Extern Bus Memory Controller"
+	default y
+	depends on DT_HAS_RENESAS_RA8_BUS_ENABLED
+	help
+	  Enable RA8 Flexible Memory Controller.
+
+if MEMC_RA8
+
+config MEMC_RA8_SDRAM
+	bool "RA8 SDRAM controller"
+	default y
+	depends on DT_HAS_RENESAS_RA8_BUS_SDRAM_ENABLED
+	help
+	  Enable RA8 FMC SDRAM controller.
+
+endif

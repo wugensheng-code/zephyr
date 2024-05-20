@@ -32,6 +32,8 @@ source "drivers/memc/Kconfig.smartbond"
 
 source "drivers/memc/Kconfig.mspi"
 
+source "drivers/memc/Kconfig.ra8"
+
 module = MEMC
 module-str = memc
 source "subsys/logging/Kconfig.template.log_config"

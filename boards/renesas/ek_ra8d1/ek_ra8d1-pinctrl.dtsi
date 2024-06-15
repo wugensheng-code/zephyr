@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-&pinctrl {
+ &pinctrl {
 	status = "okay";
 
 	sci0_default: sci0_default {

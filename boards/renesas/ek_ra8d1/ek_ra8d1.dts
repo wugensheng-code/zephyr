@@ -3,65 +3,114 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/dts-v1/;
+ /dts-v1/;
 
-#include <renesas/ra/ra8/r7fa8d1bhecbd.dtsi>
-#include <dt-bindings/gpio/gpio.h>
-
-#include "ek_ra8d1-pinctrl.dtsi"
-
-/ {
-	model = "Renesas EK-RA8D1";
-	compatible = "renesas,ra8d1", "renesas,ra8";
-
-	chosen {
-		zephyr,sram = &sram0;
-		zephyr,flash = &flash0;
-		zephyr,console = &sci9;
-		zephyr,shell-uart = &sci9;
-	};
-
-	leds {
-		compatible = "gpio-leds";
-		led0: led0 {
-			gpios = <&gpio6 0 GPIO_ACTIVE_HIGH>;
-			label = "LED1";
-		};
-		led1: led1 {
-			gpios = <&gpio4 14 GPIO_ACTIVE_HIGH>;
-			label = "LED2";
-		};
-		led2: led2 {
-			gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-			label = "LED3";
-		};
-	};
-
-	aliases {
-		led0 = &led0;
-	};
-};
-
-&sciclk {
-	clk_src = <RA_CLOCK_SOURCE_PLL1P>;
-	clk_div = <RA_SCI_CLOCK_DIV_4>;
-};
-
-&gpio1 {
-	status = "okay";
-};
-
-&gpio4 {
-	status = "okay";
-};
-
-&gpio6 {
-	status = "okay";
-};
-
-&sci9 {
-	current-speed = <115200>;
-	pinctrl-0 = <&sci9_default>;
-	pinctrl-names = "default";
-	status = "okay";
-};
+ #include <renesas/ra/ra8/r7fa8d1bhecbd.dtsi>
+ #include <dt-bindings/gpio/gpio.h>
+ 
+ #include "ek_ra8d1-pinctrl.dtsi"
+ 
+ / {
+	 model = "Renesas EK-RA8D1";
+	 compatible = "renesas,ra8d1", "renesas,ra8";
+ 
+	 chosen {
+		 zephyr,sram = &sram0;
+		 zephyr,flash = &flash0;
+		 zephyr,console = &sci9;
+		 zephyr,shell-uart = &sci9;
+		 zephyr,entropy = &trng;
+	 };
+ 
+	 leds {
+		 compatible = "gpio-leds";
+		 led0: led0 {
+			 gpios = <&gpio6 0 GPIO_ACTIVE_HIGH>;
+			 label = "LED1";
+		 };
+		 led1: led1 {
+			 gpios = <&gpio4 14 GPIO_ACTIVE_HIGH>;
+			 label = "LED2";
+		 };
+		 led2: led2 {
+			 gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
+			 label = "LED3";
+		 };
+	 };
+ 
+	 aliases {
+		 led0 = &led0;
+		 led1 = &led1;
+		 led2 = &led2;
+	 };
+ };
+ 
+ &sciclk {
+	 clk_src = <RA_CLOCK_SOURCE_PLL1P>;
+	 clk_div = <RA_SCI_CLOCK_DIV_4>;
+ };
+ 
+ &gpio1 {
+	 status = "okay";
+ };
+ 
+ &gpio4 {
+	 status = "okay";
+ };
+ 
+ &gpio6 {
+	 status = "okay";
+ };
+ 
+ &sci0 {
+	 /* sci0 and spi0 cannot be enabled together */
+	 pinctrl-0 = <&sci9_default>;
+	 pinctrl-names = "default";
+ };
+ 
+ &sci3 {
+	 pinctrl-0 = <&sci3_default>;
+	 pinctrl-names = "default";
+ };
+ 
+ &sci9 {
+	 current-speed = <115200>;
+	 pinctrl-0 = <&sci9_default>;
+	 pinctrl-names = "default";
+	 status = "okay";
+ };
+ 
+ &spi0 {
+	 /* sci0 and spi0 cannot be enabled together */
+	 compatible = "renesas,ra-spi-b";
+	 pinctrl-0 = <&spi0_default>;
+	 pinctrl-names = "default";
+	 status = "okay";
+ };
+ 
+ &trng {
+		 status = "okay";
+ };
+ 
+ &ulpt0 {
+	 status = "okay";
+ };
+ 
+ &flash0 {
+	 partitions {
+		 compatible = "fixed-partitions";
+		 #address-cells = <1>;
+		 #size-cells = <1>;
+ 
+		 boot_partition: partition@0 {
+			 label = "application";
+			 reg = <0x00000000 DT_SIZE_M(1)>;
+		 };
+ 
+		 storage_partition: partition@100000 {
+			 label = "storage";
+			 reg = <0x100000 DT_SIZE_K(992)>;
+		 };
+	 };
+ };
+ 

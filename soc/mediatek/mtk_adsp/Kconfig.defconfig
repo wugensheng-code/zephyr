@@ -26,8 +26,8 @@ config MAX_IRQ_PER_AGGREGATOR
 config 2ND_LVL_ISR_TBL_OFFSET
 	default 32
 
-config MTK_ADSP_TIMER
-	default y
+# config MTK_ADSP_TIMER
+# 	default y
 config XTENSA_TIMER
 	default n
 

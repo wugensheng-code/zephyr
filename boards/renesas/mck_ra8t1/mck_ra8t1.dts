@@ -3,65 +3,94 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/dts-v1/;
+ /dts-v1/;
 
-#include <renesas/ra/ra8/r7fa8t1ahecbd.dtsi>
-#include <dt-bindings/gpio/gpio.h>
-
-#include "mck_ra8t1-pinctrl.dtsi"
-
-/ {
-	model = "Renesas MCK-RA8T1";
-	compatible = "renesas,ra8t1", "renesas,ra8";
-
-	chosen {
-		zephyr,sram = &sram0;
-		zephyr,flash = &flash0;
-		zephyr,console = &sci3;
-		zephyr,shell-uart = &sci3;
-	};
-
-	leds {
-		compatible = "gpio-leds";
-		led0: led0 {
-			gpios = <&gpioa 12 GPIO_ACTIVE_HIGH>;
-			label = "LED1";
-		};
-		led1: led1 {
-			gpios = <&gpioa 14 GPIO_ACTIVE_HIGH>;
-			label = "LED2";
-		};
-		led2: led2 {
-			gpios = <&gpio6 6 GPIO_ACTIVE_HIGH>;
-			label = "LED3";
-		};
-		led3: led3 {
-			gpios = <&gpioa 6 GPIO_ACTIVE_HIGH>;
-			label = "LED4";
-		};
-	};
-
-	aliases {
-		led0 = &led0;
-	};
-};
-
-&sciclk {
-	clk_src = <RA_CLOCK_SOURCE_PLL1P>;
-	clk_div = <RA_SCI_CLOCK_DIV_2>;
-};
-
-&gpio6 {
-	status = "okay";
-};
-
-&gpioa {
-	status = "okay";
-};
-
-&sci3 {
-	current-speed = <115200>;
-	pinctrl-0 = <&sci3_default>;
-	pinctrl-names = "default";
-	status = "okay";
-};
+ #include <renesas/ra/ra8/r7fa8t1ahecbd.dtsi>
+ #include <dt-bindings/gpio/gpio.h>
+ 
+ #include "mck_ra8t1-pinctrl.dtsi"
+ 
+ / {
+	 model = "Renesas MCK-RA8T1";
+	 compatible = "renesas,ra8t1", "renesas,ra8";
+ 
+	 chosen {
+		 zephyr,sram = &sram0;
+		 zephyr,flash = &flash0;
+		 zephyr,console = &sci3;
+		 zephyr,shell-uart = &sci3;
+		 zephyr,entropy = &trng;
+	 };
+ 
+	 leds {
+		 compatible = "gpio-leds";
+		 led0: led0 {
+			 gpios = <&gpioa 12 GPIO_ACTIVE_HIGH>;
+			 label = "LED1";
+		 };
+		 led1: led1 {
+			 gpios = <&gpioa 14 GPIO_ACTIVE_HIGH>;
+			 label = "LED2";
+		 };
+		 led2: led2 {
+			 gpios = <&gpio6 6 GPIO_ACTIVE_HIGH>;
+			 label = "LED3";
+		 };
+		 led3: led3 {
+			 gpios = <&gpioa 6 GPIO_ACTIVE_HIGH>;
+			 label = "LED4";
+		 };
+	 };
+ 
+	 aliases {
+		 led0 = &led0;
+	 };
+ };
+ 
+ &sciclk {
+	 clk_src = <RA_CLOCK_SOURCE_PLL1P>;
+	 clk_div = <RA_SCI_CLOCK_DIV_2>;
+ };
+ 
+ &gpio6 {
+	 status = "okay";
+ };
+ 
+ &gpioa {
+	 status = "okay";
+ };
+ 
+ &sci3 {
+	 current-speed = <115200>;
+	 pinctrl-0 = <&sci3_default>;
+	 pinctrl-names = "default";
+	 status = "okay";
+ };
+ 
+ &trng {
+		 status = "okay";
+ };
+ 
+ &ulpt0 {
+	 status = "okay";
+ };
+ 
+ &flash0 {
+	 partitions {
+		 compatible = "fixed-partitions";
+		 #address-cells = <1>;
+		 #size-cells = <1>;
+ 
+		 boot_partition: partition@0 {
+			 label = "application";
+			 reg = <0x00000000 DT_SIZE_M(1)>;
+		 };
+ 
+		 storage_partition: partition@100000 {
+			 label = "storage";
+			 reg = <0x100000 DT_SIZE_K(992)>;
+		 };
+	 };
+ };
+ 
+ 

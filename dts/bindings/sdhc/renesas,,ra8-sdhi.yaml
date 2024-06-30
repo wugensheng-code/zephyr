@@ -1,0 +1,43 @@
+# Copyright 2022, NXP
+# SPDX-License-Identifier: Apache-2.0
+
+description: renesas ra8 SD host controller
+
+compatible: "renesas,ra8-sdhi"
+
+include: [sdhc.yaml, pinctrl-device.yaml]
+
+properties:
+  channel:
+    type: int
+    required: true
+
+  reg:
+    required: true
+
+  clocks:
+    required: true
+
+  # bus-width:
+  #   type: int
+  #   default: 1
+  #   description: |
+  #       bus width for SDMMC access, defaults to the minimum necessary
+  #       number of bus lines
+  #   enum:
+  #     - 1
+  #     - 4
+  #     - 8
+
+  pinctrl-0:
+    required: true
+
+  pinctrl-names:
+    required: true
+
+  interrupts:
+    required: true
+
+  interrupt-names:
+    required: true
+

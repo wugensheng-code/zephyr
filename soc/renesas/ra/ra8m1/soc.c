@@ -17,9 +17,13 @@
 #include <zephyr/arch/arm/nmi.h>
 #include <zephyr/irq.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/sys/barrier.h>
+
 LOG_MODULE_REGISTER(soc, CONFIG_SOC_LOG_LEVEL);
 
 #include <bsp_api.h>
+
+#define CCR_CACHE_ENABLE (0x000E0201)
 
 uint32_t SystemCoreClock BSP_SECTION_EARLY_INIT;
 

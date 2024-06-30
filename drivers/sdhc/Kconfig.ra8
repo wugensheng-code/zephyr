@@ -1,0 +1,40 @@
+# Copyright 2022, NXP
+# SPDX-License-Identifier: Apache-2.0
+
+DT_RA8_SDHI_HAS_DMA := $(dt_nodelabel_has_prop,sdhi,dmas)
+
+config SDHC_RA8
+	bool "RA8 SDHI Driver"
+	default y
+	depends on DT_HAS_RENESAS_RA8_SDHI_ENABLED
+	select SDHC_SUPPORTS_NATIVE_MODE
+	select DMA if $(DT_RA8_SDHI_HAS_DMA)
+	select PINCTRL
+	select USE_RA_FSP_SDHI
+	help
+	  Enable the RA8 Host controller driver
+
+# if SDHC_RA8
+
+# config MCUX_SDIF_DMA_SUPPORT
+# 	bool "DMA support for MCUX SDIF driver"
+# 	default y
+# 	help
+# 	  Enable DMA support for MCUX SDIF driver. May be disabled to reduce
+# 	  footprint of driver.
+
+# if MCUX_SDIF_DMA_SUPPORT
+
+# # SDIF DMA needs 32 bit aligned buffers
+# config SDHC_BUFFER_ALIGNMENT
+# 	default 4
+
+# config MCUX_SDIF_DMA_BUFFER_SIZE
+# 	int "Size of DMA descriptor buffer in bytes"
+# 	default 256
+# 	help
+# 	  Size of MCUX SDIF DMA descriptor buffer in bytes
+
+# endif #MCUX_SDIF_DMA_SUPPORT
+
+# endif #MCUX_SDIF

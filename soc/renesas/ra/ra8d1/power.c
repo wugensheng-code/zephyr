@@ -17,7 +17,7 @@ const lpm_cfg_t g_lpm_sleep_cfg = {
 	.low_power_mode = LPM_MODE_SLEEP,
 	.standby_wake_sources = (lpm_standby_wake_source_t)0,
 #if BSP_FEATURE_LPM_HAS_SNOOZE
-	.snooze_cancel_sources =,
+	.snooze_cancel_sources = RA_NOT_DEFINED,
 	.snooze_request_source = RA_NOT_DEFINED,
 	.snooze_end_sources = (lpm_snooze_end_t)0,
 	.dtc_state_in_snooze = RA_NOT_DEFINED,
@@ -51,7 +51,7 @@ const lpm_cfg_t g_lpm_sw_standby_cfg = {
 	.standby_wake_sources = LPM_STANDBY_WAKE_SOURCE_IRQ13 | LPM_STANDBY_WAKE_SOURCE_ULP0U |
 				(lpm_standby_wake_source_t)0,
 #if BSP_FEATURE_LPM_HAS_SNOOZE
-	.snooze_cancel_sources =,
+	.snooze_cancel_sources = RA_NOT_DEFINED,
 	.snooze_request_source = RA_NOT_DEFINED,
 	.snooze_end_sources = (lpm_snooze_end_t)0,
 	.dtc_state_in_snooze = RA_NOT_DEFINED,
@@ -91,7 +91,6 @@ void pm_state_set(enum pm_state state, uint8_t substate_id)
 	switch (state) {
 	case PM_STATE_RUNTIME_IDLE:
 		LOG_DBG("power state %u", state);
-		__set_BASEPRI(0);
 		R_LPM_Open(&g_lpm_sleep_ctrl, &g_lpm_sleep_cfg);
 		R_LPM_LowPowerModeEnter(&g_lpm_sleep_ctrl);
 		break;
@@ -129,10 +128,6 @@ void pm_state_exit_post_ops(enum pm_state state, uint8_t substate_id)
 /* Initialize RA8 Power */
 static int ra_power_init(void)
 {
-
-	/* enable Power clock */
-	R_LPM_Open(&g_lpm_sleep_ctrl, &g_lpm_sleep_cfg);
-
 #ifdef CONFIG_DEBUG
 	/* Enable the Debug Module during STOP mode */
 	R_SYSTEM->SYOCDCR_b.DBGEN = 1;

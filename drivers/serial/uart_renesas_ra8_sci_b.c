@@ -10,7 +10,6 @@
 #include <zephyr/drivers/pinctrl.h>
 #include <zephyr/sys/util.h>
 #include <zephyr/irq.h>
-#include <zephyr/drivers/clock_control/renesas_ra_cgc.h>
 #include <soc.h>
 #include "r_sci_b_uart.h"
 #include "r_dtc.h"
@@ -29,8 +28,6 @@ void sci_b_uart_eri_isr(void);
 struct uart_ra_sci_b_config {
 	R_SCI_B0_Type * const regs;
 	const struct pinctrl_dev_config *pcfg;
-	const struct device *clock_dev;
-	struct clock_control_ra_subsys_cfg clock_subsys;
 };
 
 struct uart_ra_sci_b_data {
@@ -896,17 +893,6 @@ static int uart_ra_sci_b_init(const struct device *dev)
 	k_work_init_delayable(&data->tx_timeout_work, uart_ra_sci_b_async_tx_timeout);
 	k_work_init_delayable(&data->rx_timeout_work, uart_ra_sci_b_async_rx_timeout);
 #endif /* defined(CONFIG_UART_ASYNC_API) */
-
-	if (!device_is_ready(config->clock_dev)) {
-		return -ENODEV;
-	}
-
-	ret = clock_control_on(config->clock_dev,
-			       (clock_control_subsys_t)&config->clock_subsys);
-
-	if (ret < 0) {
-		return ret;
-	}
 
 	fsp_err = R_SCI_B_UART_Open(&data->sci, &data->fsp_config);
 	__ASSERT(fsp_err == 0, "sci_uart: initialization: open failed");

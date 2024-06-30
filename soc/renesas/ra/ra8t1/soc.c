@@ -6,7 +6,7 @@
 
 /**
  * @file
- * @brief System/hardware module for Renesas RA8M1 family processor
+ * @brief System/hardware module for Renesas RA8T1 family processor
  */
 
 #include <zephyr/device.h>
@@ -37,7 +37,7 @@ volatile uint32_t g_protect_pfswe_counter BSP_SECTION_EARLY_INIT;
  *
  * @return 0
  */
-static int renesas_ra8m1_init(void)
+static int renesas_ra8t1_init(void)
 {
 	SystemCoreClock = BSP_MOCO_HZ;
 	g_protect_pfswe_counter = 0;
@@ -49,4 +49,4 @@ static int renesas_ra8m1_init(void)
 	return 0;
 }
 
-SYS_INIT(renesas_ra8m1_init, PRE_KERNEL_1, 0);
+SYS_INIT(renesas_ra8t1_init, PRE_KERNEL_1, 0);

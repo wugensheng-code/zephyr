@@ -1,9 +1,10 @@
-# Copyright (c) 2023 TOKITA Hiroshi <tokita.hiroshi@fujitsu.com>
+# Copyright (c) 2024 Renesas Electronics Corporation
 # SPDX-License-Identifier: Apache-2.0
 
-config CLOCK_CONTROL_RENESAS_RA
-	bool "Renesas RA series clock generation circuit driver"
+config CLOCK_CONTROL_RENESAS_RA_CGC
+	bool "RA CGC driver"
 	default y
-	depends on DT_HAS_RENESAS_RA_CLOCK_GENERATION_CIRCUIT_ENABLED
+	depends on SOC_FAMILY_RENESAS_RA
+	depends on HAS_RENESAS_RA_FSP
 	help
-	  Enable Renesas RA series clock generation circuit driver.
+	  Enable support for Renesas RA CGC driver.

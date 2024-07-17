@@ -7,7 +7,8 @@ DT_STM32_SDMMC_HAS_DMA := $(dt_nodelabel_has_prop,sdmmc,dmas)
 config DISK_DRIVER_SDMMC
 	bool "SDMMC card driver"
 	default y if DT_HAS_ZEPHYR_SDMMC_DISK_ENABLED || \
-			DT_HAS_ST_STM32_SDMMC_ENABLED
+			DT_HAS_ST_STM32_SDMMC_ENABLED || \
+			DT_HAS_RENESAS_RA8_SDHI_ENABLED
 	help
 	  SDMMC card driver.
 
@@ -75,6 +76,17 @@ config SDMMC_STM32_CLOCK_CHECK
 	  Enable SDMMC clock 48MHz configuration runtime check.
 	  In specific cases, this check might provide wrong verdict and should
 	  be disabled.
+
+
+config SDHI_RA
+	bool "Renesas RA SDHI driver"
+	default y
+	depends on DT_HAS_RENESAS_RA8_SDHI_ENABLED
+	select USE_RA_FSP_SDHI
+	select RESET
+	help
+	  File system on sdmmc accessed through ra sdhi.
+
 
 module = SDMMC
 module-str = sdmmc

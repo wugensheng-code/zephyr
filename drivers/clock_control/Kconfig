@@ -102,10 +102,4 @@ source "drivers/clock_control/Kconfig.arm_scmi"
 
 source "drivers/clock_control/Kconfig.silabs"
 
-source "drivers/clock_control/Kconfig.arm_scmi"
-
-source "drivers/clock_control/Kconfig.silabs"
-
-=======
->>>>>>> a059cfe273f (driver: clock: Update clock control driver for RA)
 endif # CLOCK_CONTROL

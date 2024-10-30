@@ -15,8 +15,8 @@ properties:
   reg:
     required: true
 
-  clocks:
-    required: true
+  # clocks:
+  #   required: true
 
   # bus-width:
   #   type: int

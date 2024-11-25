@@ -201,7 +201,7 @@ static const struct disk_operations sdhi_ops = {
 };
 
 static struct disk_info sdhi_info = {
-	.name = CONFIG_SDMMC_VOLUME_NAME,
+	.name = "SD",
 	.ops = &sdhi_ops,
 };
 

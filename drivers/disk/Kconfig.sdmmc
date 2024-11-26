@@ -78,7 +78,6 @@ config SDHI_RA
 	default y
 	depends on DT_HAS_RENESAS_RA8_SDHI_ENABLED
 	select USE_RA_FSP_SDHI
-	select RESET
 	help
 	  File system on sdmmc accessed through ra sdhi.
 

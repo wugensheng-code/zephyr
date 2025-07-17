@@ -645,6 +645,7 @@ static const struct video_format_cap dvp_fmts[] = {
 	OV5640_VIDEO_FORMAT_CAP(160, 120, VIDEO_PIX_FMT_RGB565),
 	OV5640_VIDEO_FORMAT_CAP(320, 240, VIDEO_PIX_FMT_RGB565),
 	OV5640_VIDEO_FORMAT_CAP(480, 272, VIDEO_PIX_FMT_RGB565),
+	OV5640_VIDEO_FORMAT_CAP(320, 240, VIDEO_PIX_FMT_YUYV),
 	{0}};
 
 static inline bool ov5640_is_dvp(const struct device *dev)

@@ -1,0 +1,91 @@
+/*
+ * Copyright (c) 2025 STMicroelectronics
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+ #include <zephyr/dt-bindings/video/video-interfaces.h>
+
+/ {
+	chosen {
+		zephyr,camera = &dvp_20pin_interface;
+		// zephyr,camera = &video_sw_generator;
+	};
+
+	// video_sw_generator: video-sw-generator {
+	// 	compatible = "zephyr,video-sw-generator";
+	// };
+};
+
+&pwm7 {
+	status = "okay";
+};
+
+&cam_clock {
+	status = "okay";
+};
+
+&pinctrl {
+	ceu_default: ceu_default {
+		group1 {
+			/* CEU */
+			psels = <RA_PSEL(RA_PSEL_CEU, 4, 0)>, /* VIO_D0 */
+				<RA_PSEL(RA_PSEL_CEU, 4, 1)>, /* VIO_D1 */
+				<RA_PSEL(RA_PSEL_CEU, 4, 5)>, /* VIO_D2 */
+				// <RA_PSEL(RA_PSEL_CEU, 4, 6)>, /* VIO_D3 */
+				<RA_PSEL(RA_PSEL_CEU, 7, 0)>, /* VIO_D4 */
+				<RA_PSEL(RA_PSEL_CEU, 7, 1)>, /* VIO_D5 */
+				<RA_PSEL(RA_PSEL_CEU, 7, 2)>, /* VIO_D6 */
+				<RA_PSEL(RA_PSEL_CEU, 7, 3)>; /* VIO_D7 */
+				// <RA_PSEL(RA_PSEL_CEU, 7, 8)>, /* VIO_CLK */
+				// <RA_PSEL(RA_PSEL_CEU, 7, 9)>, /* VIO_HD */
+				// <RA_PSEL(RA_PSEL_CEU, 7, 10)>; /* VIO_VD */
+			// drive-strength = "high";
+		};
+		group2 {
+			psels = <RA_PSEL(RA_PSEL_CEU, 4, 6)>, /* VIO_D3 */
+				<RA_PSEL(RA_PSEL_CEU, 7, 8)>, /* VIO_CLK */
+				<RA_PSEL(RA_PSEL_CEU, 7, 9)>, /* VIO_HD */
+				<RA_PSEL(RA_PSEL_CEU, 7, 10)>; /* VIO_VD */
+			// drive-strength = "high";
+			bias-pull-up;
+		};
+	};
+};
+
+
+&dvp_20pin_i2c {
+	ov5640: camera@3c {
+		compatible = "ovti,ov5640";
+		reg = <0x3c>;
+		status = "okay";
+		reset-gpios = <&dvp_20pin_connector DVP_20PIN_PEN GPIO_ACTIVE_LOW>;
+		powerdown-gpios  = <&dvp_20pin_connector DVP_20PIN_PDN GPIO_ACTIVE_HIGH>;
+
+		port {
+			ov5640_ep_out: endpoint {
+				remote-endpoint-label = "dvp_20pin_ep_in";
+				bus-type = <VIDEO_BUS_TYPE_PARALLEL>;
+			};
+		};
+	};
+};
+
+&dvp_20pin_interface {
+	status = "okay";
+	// swap-8bits;
+	swap-16bits;
+	// swap-32bits;
+
+	port {
+		dvp_20pin_ep_in: endpoint {
+			remote-endpoint-label = "ov5640_ep_out";
+			bus-width = <8>;
+			hsync-active = <1>;
+			vsync-active = <1>;
+			pclk-sample = <1>;
+			hsync-sample = <1>;
+			vsync-sample = <1>;
+		};
+	};
+};

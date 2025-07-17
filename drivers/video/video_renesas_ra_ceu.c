@@ -80,6 +80,11 @@ static void video_renesas_ra_ceu_callback(capture_callback_args_t *p_args)
 		if (curr_vbuf && atomic_ptr_cas(&data->vbuf, curr_vbuf, NULL)) {
 			curr_vbuf->timestamp = k_uptime_get_32();
 			k_fifo_put(&data->fifo_out, curr_vbuf);
+#ifdef CONFIG_POLL
+			if (data->signal) {
+				k_poll_signal_raise(data->signal, VIDEO_BUF_DONE);
+			}
+#endif
 		}
 
 		next_vbuf = k_fifo_get(&data->fifo_in, K_NO_WAIT);

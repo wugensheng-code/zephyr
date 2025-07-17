@@ -1,0 +1,6 @@
+shield:
+  name: ruiside_ra8d1_vision_board_cam
+  vendor: ruiside
+  full_name: Vision Board Camera Shield
+  supported_features:
+    - video

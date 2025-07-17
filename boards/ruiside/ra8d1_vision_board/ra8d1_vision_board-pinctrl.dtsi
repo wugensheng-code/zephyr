@@ -127,4 +127,24 @@
 			drive-strength = "highspeed-high";
 		};
 	};
+
+	usbhs_default: usbhs_default {
+		group1 {
+			psels = <RA_PSEL(RA_PSEL_USBHS, 11, 1)>; /* USBHS-VBUS */
+			drive-strength = "high";
+		};
+	};
+
+	pwm7_default: pwm7_default {
+		group1 {
+			/* GTIOC7A */
+			psels = <RA_PSEL(RA_PSEL_GPT1, 10, 7)>;
+			// drive-strength = "medium";
+		};
+		group2 {
+			/* GTIOC7B */
+			psels = <RA_PSEL(RA_PSEL_GPT1, 10, 6)>;
+			// drive-strength = "medium";
+		};
+	};
 };

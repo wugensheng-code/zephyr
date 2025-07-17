@@ -1,0 +1,6 @@
+# Copyright (c) 2025 STMicroelectronics
+
+# SPDX-License-Identifier: Apache-2.0
+
+config SHIELD_RUISIDE_RA8D1_VISION_CAM
+	def_bool $(shields_list_contains,ruiside_ra8d1_vision_baord_cam)
